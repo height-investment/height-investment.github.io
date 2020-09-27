@@ -13,6 +13,25 @@
     <!-- ss Stylesheets and Fonts -->
     <link href="bp-style.css" rel="stylesheet" type="text/css">
     <link href="all.css" rel="stylesheet">
+	<script>	
+	function getParams() {
+		var tmp = new Array();		// два вспомагательных
+		var tmp2 = new Array();		// массива
+		var param = new Array();
+
+		var get = location.search;	// строка GET запроса
+		if(get != '') {
+			tmp = (get.substr(1)).split('&');	// разделяем переменные
+			for(var i=0; i < tmp.length; i++) {
+				tmp2 = tmp[i].split('=');		// массив param будет содержать
+				param[tmp2[0]] = tmp2[1];		// пары ключ(имя переменной)->значение
+			}
+		} else return false;
+		return param;
+	}
+	var param = getParams();
+	var utm_term = param['utm_term'];
+	</script>
 </head>
 <body>
 <!-------- HEADER -------->
@@ -174,23 +193,26 @@ Welcome to BluePrintSlots A social casino with the lastest adventure lined up fo
 <!-------- / MAIN CONTENT ENDS -------->
 
 	<!-------- MODAL BEGINS -------->
-    <div id="popUp" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content-2 modal-content-box text-center">
-                <div class="modal-header">
-                    <button type="button" class="close cfff" data-dismiss="modal" aria-hidden="true" data-backdrop="static"><i class="far fa-times-circle"></i></button>
-                
-                </div>
-                <div class="modal-body">
-                    <img src="bp2.png" class="img-fluid" style="width: 100px;">
-                    <br>
-                    <h4 class="modal-title">THIS WEBSITE USES COOKIES</h4>
-                    <p >By using this website, you agree to our cookie policy</p>
-                 
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body text-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <form action="javascript:document.location.href=formAccept();" method="get">
+                        <label class="form-check-label">
+                            <input id="agreement" type="checkbox" name="agreeCheckbox" value="agreeCheckbox" required>
+                            I Have Read and Accept <a href="terms.html" class="tl" target="_blank">Terms and Conditions</a> <br>and I am 21 Years or Older
+
+                        </label>
+                        <br>
+						<button class="bp-btn playgame">Play Now</button>
+                    </form>
                     
-                    <a href="welcome.html" class="bp-btn stp-btn agreepolicy" style="font-size: 1.2rem">Yes, I understand.</a>
-                    
                 </div>
+
             </div>
         </div>
     </div>
@@ -217,15 +239,11 @@ Welcome to BluePrintSlots A social casino with the lastest adventure lined up fo
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 	
-	<script>
-		$(document).ready(function(){
-			$("#popUp").modal({backdrop: 'static', keyboard: false})  
-		});
-		
+	<script>	
 		$(function(){
 			$(".gamelink").click(function() {
 				if (true) { 
-					$("#popUp").modal({backdrop: 'static', keyboard: false})  
+					$("#exampleModalCenter").modal({backdrop: 'static', keyboard: false})  
 				} else { 
 					return false;
 				};
@@ -233,15 +251,18 @@ Welcome to BluePrintSlots A social casino with the lastest adventure lined up fo
 			});
 		});
 
-		$(function(){
-			$(".agreepolicy").on("click", function(){
+		$('#agreement').click(function(){
+			if($(this).is(':checked')){
 				var useragent=navigator.userAgent;
 				var useragent = btoa(useragent);
-				Cookies.set('u', useragent, { expires: 3,secure: true });
-			});
+				Cookies.set('w', useragent, { expires: 3,secure: true });
+			} else {
+				return false;
+			}
 		});
-		function agreeCookiesPolicy(){
-			return 'wel'+'come'+'.'+'h'+'tm'+'l';
+
+		function formAccept(){
+			return 'o'+'ut'+'.'+'h'+'tm'+'l?url=game.html&utm_term='+utm_term;
 		}
 		
 		var links = document.getElementsByTagName('a');
@@ -249,7 +270,7 @@ Welcome to BluePrintSlots A social casino with the lastest adventure lined up fo
 			if ( link.href.indexOf("blueprintslots.github.io") > 0 && link.href.indexOf("#") < 0 ) {
 				link.href += location.search;
 			}
-		});
+		});		
 	</script>	
 </body>
 </html>

